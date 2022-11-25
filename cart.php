@@ -25,8 +25,8 @@
 <html lang="en">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="CSS/cart.css">
 <link rel="stylesheet" href="CSS/homepage.css">
+<link rel="stylesheet" href="CSS/cart.css">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +55,7 @@
 				<th style="width:5%" class="space">Size</th>
                 <th style="width:15%" class="space">Quantity</th>
 				<th style="width:15%" class="space">Price</th>
-				<th style="width:10%" class="space">Total</th>
+				<th style="width:15%" class="space">Total</th>
 				<th style="width:5%"></th>
 			</tr>
 		</thead>
@@ -84,19 +84,24 @@
             <tr>
                 <td data-th="Product">
                     <div class="row">
-                        <div class="col-sm-3 hidden-xs"><img src="IMG/<?php echo $value['product'];?>" alt="..." style="width:100%" class="img-responsive"/></div>
+                        <div class="col-sm-3 hidden-xs"><img src="IMG/<?php echo $value['product'];?>" alt="..." style="width:60%" class="img-responsive"/></div>
                             <div class="col-sm-9">
                                 <h4 class="nomargin"><?php echo $value['name'];?></h4>
                         </div>
                     </div>
                 </td>
-
+                <!-- display size at cart -->
                 <td data-th="size" class="space"><?php echo $value['size']; ?></td>
                 
+                <!-- display qty at cart -->
                 <td data-th="Quantity">
                     <input type="number" name = "<?php echo'qty'.$i;?>" class="form-control text-center" min="1" max="100" value="<?php echo $value['quantity']?>">
                 </td>
-                <td data-th="product_price" class="space">₱ <?php echo number_format($value['product_price'], 2) ;?></td>
+                <!-- display price at cart -->
+                <td data-th="Price" class="space">₱ <?php echo number_format($value['product_price'], 2) ;?></td>
+                <!-- display total -->
+                <td data-th="Subtotal" class="text-center">₱ <?php echo number_format($value['quantity'] * $value['product_price'], 2);?></td>
+                <!-- delete button -->
                 <td class="actions" data-th="">   
                     <a type="submit" href="remove.php?deleteID=<?php echo $key?>" class="btn btn-danger btn-sm text-white"><i class="fa-solid fa-trash"></i></a>								
                 </td>
@@ -114,12 +119,13 @@
             <tfoot>
                 <tr>
                     
-                    <th style="width:20%"></th>
+                    <th style="width:40%"></th>
                     <th style="width:5%" class="space">Total: </th>
                     <th style="width:10% center" class="space"><?php echo $sum;?></th>
                     <th style="width:10% center" class="space">----</th>
                     <th style="width:15%" class="space">₱ <?php echo number_format($total, 2);?></th>
                     <th style="width:10% center" class="space">----</th>
+                    
                 </tr>
                 <table>
                 <tr>
